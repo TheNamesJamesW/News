@@ -10,7 +10,7 @@ import UIKit
 
 class LatestFeedTableViewController: UITableViewController {
     
-    private var data: [Article] = []
+    fileprivate var data: [Article] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +72,8 @@ class LatestFeedTableViewController: UITableViewController {
         cell.headline.text = data[indexPath.row].title
         cell.source.text = data[indexPath.row].source
         
+        cell.delegate = self
+        
         return cell
     }
     
@@ -124,4 +126,22 @@ class LatestFeedTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension LatestFeedTableViewController: ArticleTableViewCellDelegate {
+    func articleCell(_ cell: ArticleTableViewCell, didCommit action: ArticleTableViewCell.Action) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        switch action {
+        case .readLater:
+            // TODO: Implement saved articles
+            // TODO: save this article
+            self.tableView.reloadRows(at: [indexPath], with: .right)
+            
+        case .discard:
+            data.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .top)
+            StateController.instance.set(self.data, for: .latest)
+        }
+    }
 }

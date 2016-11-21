@@ -98,7 +98,7 @@ class StateController {
         fire(.loaded(syncArticles.array), for: .latest)
     }
     
-    private func set(_ articles: [Article], for state: State) {
+    func set(_ articles: [Article], for state: State) {
         let sortedByURL = articles.sorted {
             $0.url.absoluteString < $1.url.absoluteString
         }
@@ -114,7 +114,7 @@ class StateController {
         self.articles[state] = merged
     }
     
-    private func get(articlesFor state: State) -> [Article] {
+    func get(for state: State) -> [Article] {
         return self.articles[state] ?? []
     }
 }
