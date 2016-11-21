@@ -90,4 +90,12 @@ struct Article: CustomJSONConvertible {
         
         return JSON(dict)
     }
+    
+    func addingHeadlines<C: Collection>(_ headlines: C) -> Article where C.Iterator.Element == Feed.HeadlineList {
+        var other = self
+        for headline in headlines where !other.headlineList.contains(headline) {
+            other.headlineList.insert(headline)
+        }
+        return other
+    }
 }
