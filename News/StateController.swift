@@ -14,7 +14,8 @@ class StateController {
     
     enum State: Int {
         case latest
-        case saved
+        case readLater
+        case discarded
     }
     
     enum Event {
@@ -98,7 +99,26 @@ class StateController {
         fire(.loaded(syncArticles.array), for: .latest)
     }
     
-    func set(_ articles: [Article], for state: State) {
+    func readLater(_ article: Article) {
+        var articles = get(for: .latest)
+        guard let index = articles.index(where: { $0.url == article.url }) else { return }
+        articles.remove(at: index)
+        set(articles, for: .latest)
+        
+        let saved = get(for: .readLater)
+        set(saved + [article], for: .readLater)
+    }
+    
+    func discard(_ article: Article, for state: State) {
+        guard state != .discarded else { return }
+        
+        var articles = get(for: state)
+        guard let index = articles.index(where: { $0.url == article.url }) else { return }
+        articles.remove(at: index)
+        set(articles, for: state)
+    }
+    
+    private func set(_ articles: [Article], for state: State) {
         let sortedByURL = articles.sorted {
             $0.url.absoluteString < $1.url.absoluteString
         }
@@ -110,11 +130,22 @@ class StateController {
             return Array(result.dropLast()) + [merged]
         }
         
-//        JSONFlatFile.default[.latest] = JSON(merged.map { $0.toJSON() }.prefix(10))
-        self.articles[state] = merged
+        let articles: [Article]
+        switch state {
+        case .latest:
+            let discardedURLs = get(for: .discarded).map { $0.url }
+            articles = merged.filter { !discardedURLs.contains($0.url) }
+        case .readLater:
+            articles = merged
+        case .discarded:
+            articles = merged.flatMap { $0.stripped() }
+        }
+        
+//        JSONFlatFile.default[.latest] = JSON(articles.map { $0.toJSON() })
+        self.articles[state] = articles
     }
     
-    func get(for state: State) -> [Article] {
+    private func get(for state: State) -> [Article] {
         return self.articles[state] ?? []
     }
 }
@@ -125,16 +156,20 @@ extension JSONFlatFile {
             switch state {
             case .latest:
                 return self["latestArticles"]
-            case .saved:
+            case .readLater:
                 return self["savedArticles"]
+            case .discarded:
+                return self["discardedArticles"]
             }
         }
         set {
             switch state {
             case .latest:
                 self["latestArticles"] = newValue
-            case .saved:
+            case .readLater:
                 self["savedArticles"] = newValue
+            case .discarded:
+                self["discardedArticles"] = newValue
             }
         }
     }

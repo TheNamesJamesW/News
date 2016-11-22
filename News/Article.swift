@@ -91,6 +91,18 @@ struct Article: CustomJSONConvertible {
         return JSON(dict)
     }
     
+    func stripped() -> Article {
+        let dict: [String : Any] = [
+            "source" : source,
+            "headlineList" : headlineList.map { $0.rawValue },
+            "title" : title,
+            "url" : url.absoluteString,
+            "fetchedDate" : fetchedDate.timeIntervalSince1970
+        ]
+        let json = JSON(dict)
+        return Article(json: json)!
+    }
+    
     func addingHeadlines<C: Collection>(_ headlines: C) -> Article where C.Iterator.Element == Feed.HeadlineList {
         var other = self
         for headline in headlines where !other.headlineList.contains(headline) {
