@@ -131,17 +131,16 @@ class LatestFeedTableViewController: UITableViewController {
 extension LatestFeedTableViewController: ArticleTableViewCellDelegate {
     func articleCell(_ cell: ArticleTableViewCell, didCommit action: ArticleTableViewCell.Action) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let article = data.remove(at: indexPath.row)
         
         switch action {
         case .readLater:
-            // TODO: Implement saved articles
-            // TODO: save this article
-            self.tableView.reloadRows(at: [indexPath], with: .right)
+            self.tableView.deleteRows(at: [indexPath], with: .top)
+            StateController.instance.readLater(article)
             
         case .discard:
-            data.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .top)
-            StateController.instance.set(self.data, for: .latest)
+            StateController.instance.discard(article, for: .latest)
         }
     }
 }
