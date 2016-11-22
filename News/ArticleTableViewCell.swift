@@ -77,6 +77,7 @@ class ArticleTableViewCell: UITableViewCell {
             }
             if let action = provisionalAction {
                 self.contentView.center.x = _original.x + translation
+                style(for: action, translation: translation)
             } else {
                 self.contentView.center.x = _original.x + translation/4
 //                style(for: nil, translation: translation)
@@ -120,6 +121,8 @@ class ArticleTableViewCell: UITableViewCell {
             
             UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
                 self.contentView.center = newCenter
+                self.contentView.alpha = action == .discard ? 0 : 1
+                self.contentView.backgroundColor = action == .readLater ? #colorLiteral(red: 0.2078431373, green: 0.8117647059, blue: 0.7098039216, alpha: 1) : .white
             }, completion: { _ in
                 self.isUserInteractionEnabled = action == nil
                 if let action = action {
@@ -130,6 +133,12 @@ class ArticleTableViewCell: UITableViewCell {
         default:
             break
         }
+    }
+    
+    private func style(for action: Action?, translation: CGFloat) {
+        let alpha = min(abs(translation*1.5) / self.bounds.width, 1)
+        self.contentView.alpha = action == .discard ? 1-alpha : 1
+        self.contentView.backgroundColor = action == .readLater ? #colorLiteral(red: 0.2078431373, green: 0.8117647059, blue: 0.7098039216, alpha: 1).withAlphaComponent(alpha) : .white
     }
     
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
