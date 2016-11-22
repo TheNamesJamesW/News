@@ -73,6 +73,7 @@ class ArticlesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "article", for: indexPath) as! ArticleTableViewCell
         
         cell.delegate = self
+        cell.state = self.state
         cell.swipeOptions = self.allowedSwipeOptions
         
         configure(cell, for: indexPath)

@@ -21,6 +21,13 @@ class ArticleTableViewCell: UITableViewCell {
     
     private var _original: CGPoint!
     
+    var state: StateController.State! {
+        didSet {
+            self.contentView.backgroundColor = state == .latest ? .white : .newsyGreen
+            self.source.textColor = state == .latest ? .newsyGreen : .darkText
+        }
+    }
+    
     enum Action {
         case readLater
         case discard
@@ -48,7 +55,14 @@ class ArticleTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        resetUI()
+    }
+    
+    private func resetUI() {
         self.isUserInteractionEnabled = true
+        self.contentView.alpha = 1
+        self.contentView.backgroundColor = state == .latest ? .white : .newsyGreen
+        self.source.textColor = state == .latest ? .newsyGreen : .darkText
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -80,7 +94,6 @@ class ArticleTableViewCell: UITableViewCell {
                 style(for: action, translation: translation)
             } else {
                 self.contentView.center.x = _original.x + translation/4
-//                style(for: nil, translation: translation)
             }
         case .ended:
             let translation = gestureRecognizer.translation(in: self).x
@@ -121,8 +134,12 @@ class ArticleTableViewCell: UITableViewCell {
             
             UIView.animate(withDuration: 0.1, delay: 0.0, options: [.curveEaseOut, .allowUserInteraction], animations: {
                 self.contentView.center = newCenter
-                self.contentView.alpha = action == .discard ? 0 : 1
-                self.contentView.backgroundColor = action == .readLater ? #colorLiteral(red: 0.2078431373, green: 0.8117647059, blue: 0.7098039216, alpha: 1) : .white
+                if let action = action {
+                    self.contentView.alpha = action == .discard ? 0 : 1
+                    self.contentView.backgroundColor = action == .readLater ? .newsyGreen : .white
+                } else {
+                    self.resetUI()
+                }
             }, completion: { _ in
                 self.isUserInteractionEnabled = action == nil
                 if let action = action {
@@ -136,9 +153,10 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     private func style(for action: Action?, translation: CGFloat) {
-        let alpha = min(abs(translation*1.5) / self.bounds.width, 1)
-        self.contentView.alpha = action == .discard ? 1-alpha : 1
-        self.contentView.backgroundColor = action == .readLater ? #colorLiteral(red: 0.2078431373, green: 0.8117647059, blue: 0.7098039216, alpha: 1).withAlphaComponent(alpha) : .white
+        let percent = min(abs(translation*1.5) / self.bounds.width, 1)
+        contentView.alpha = action == .discard ? 1-percent : 1
+        contentView.backgroundColor = action == .readLater ? UIColor.newsyGreen.withAlphaComponent(percent) : (state == .latest ? .white : .newsyGreen)
+        source.textColor = action == .readLater ? UIColor.newsyGreen.fade(to: .white, distance: percent) : (state == .latest ? .newsyGreen : .white)
     }
     
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
