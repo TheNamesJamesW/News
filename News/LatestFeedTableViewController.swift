@@ -25,6 +25,10 @@ class LatestFeedTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 140
         
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
+        self.refreshControl = refresh
+        
         StateController.instance.subscribe(to: .latest) {
             switch $0 {
             case .preloaded(let articles):
@@ -38,6 +42,9 @@ class LatestFeedTableViewController: UITableViewController {
             case .loaded(let articles):
                 self.data = articles
                 self.reloadData()
+                if let refreshControl = self.refreshControl, refreshControl.isRefreshing {
+                    refreshControl.endRefreshing()
+                }
             }
         }
         StateController.instance.downloadFeedArticles()
@@ -79,6 +86,10 @@ class LatestFeedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
+    }
+    
+    @objc private func refreshTable(_ sender: UIRefreshControl?) {
+        StateController.instance.downloadFeedArticles() // Triggeres subscribe update
     }
 
     /*
