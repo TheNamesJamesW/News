@@ -102,6 +102,14 @@ class StateController {
         fire(.loaded(syncArticles.array), for: .latest)
     }
     
+    // MARK: - 'Read Later' Article fetching
+    
+    func loadReadLaterArticles() {
+//        let saved = JSONFlatFile.default[.readLater]?.array?.flatMap { Article(json: $0) }
+        let saved = get(for: .readLater)
+        fire(.loaded(saved), for: .readLater)
+    }
+    
     // MARK: - Interaction
     
     func readLater(_ article: Article) {

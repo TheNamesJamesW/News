@@ -49,7 +49,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Item-->
+        <!--Feed-->
         <scene sceneID="uOd-hu-OFm">
             <objects>
                 <tableViewController id="VPR-1l-lBD" customClass="LatestFeedTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
@@ -89,7 +89,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="Item" image="first" id="WJI-QT-yDx"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="first" id="WJI-QT-yDx"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgx-EO-gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,6 +135,36 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
+        <!--Read Later-->
+        <scene sceneID="3Iq-sG-3u6">
+            <objects>
+                <tableViewController id="fBs-RX-5Ai" customClass="ReadLaterTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YLg-UQ-l42">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CjQ-Ur-ChB">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CjQ-Ur-ChB" id="IjZ-Qu-0Ju">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fBs-RX-5Ai" id="mJ1-cx-BF3"/>
+                            <outlet property="delegate" destination="fBs-RX-5Ai" id="Rey-Fl-00p"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <tabBarItem key="tabBarItem" title="Read Later" image="second" id="31a-xs-74y"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZ0-jc-MVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1462" y="366"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -148,7 +178,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="VPR-1l-lBD" kind="relationship" relationship="viewControllers" id="6U6-nY-uwF"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="Wjd-2v-Z6u"/>
+                        <segue destination="fBs-RX-5Ai" kind="relationship" relationship="viewControllers" id="f36-lD-RF9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

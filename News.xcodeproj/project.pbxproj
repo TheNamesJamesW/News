@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3B9A57B51F2BDCC34ECFAA78 /* Pods_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0CE49358539126F218ADED /* Pods_News.framework */; };
+		A001DFDB1DE47945002C4677 /* ArticlesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001DFDA1DE47945002C4677 /* ArticlesTableViewController.swift */; };
+		A001DFDD1DE48C4E002C4677 /* ReadLaterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001DFDC1DE48C4E002C4677 /* ReadLaterTableViewController.swift */; };
 		A00628941DDE466A0036B005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00628931DDE466A0036B005 /* AppDelegate.swift */; };
 		A00628961DDE466A0036B005 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00628951DDE466A0036B005 /* FirstViewController.swift */; };
 		A00628981DDE466A0036B005 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00628971DDE466A0036B005 /* SecondViewController.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		6A7E9F08BB1F03321BC8EC74 /* Pods-News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News.release.xcconfig"; path = "Pods/Target Support Files/Pods-News/Pods-News.release.xcconfig"; sourceTree = "<group>"; };
+		A001DFDA1DE47945002C4677 /* ArticlesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticlesTableViewController.swift; sourceTree = "<group>"; };
+		A001DFDC1DE48C4E002C4677 /* ReadLaterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadLaterTableViewController.swift; sourceTree = "<group>"; };
 		A00628901DDE466A0036B005 /* News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00628931DDE466A0036B005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A00628951DDE466A0036B005 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -149,7 +153,9 @@
 		A00628B21DDE49AB0036B005 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A001DFDA1DE47945002C4677 /* ArticlesTableViewController.swift */,
 				A0F2C1721DE28A4400D0E126 /* LatestFeedTableViewController.swift */,
+				A001DFDC1DE48C4E002C4677 /* ReadLaterTableViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -290,11 +296,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0F2C1731DE28A4400D0E126 /* LatestFeedTableViewController.swift in Sources */,
+				A001DFDD1DE48C4E002C4677 /* ReadLaterTableViewController.swift in Sources */,
 				A00628B41DDE49C10036B005 /* Article.swift in Sources */,
 				A09EF83F1DE1DC47009D8055 /* StateController.swift in Sources */,
 				A00628B61DDE49CA0036B005 /* Feed.swift in Sources */,
 				A08AF6BD1DE36F3800C0D757 /* ArticleTableViewCell.swift in Sources */,
 				A00628981DDE466A0036B005 /* SecondViewController.swift in Sources */,
+				A001DFDB1DE47945002C4677 /* ArticlesTableViewController.swift in Sources */,
 				A0F2C16F1DE2403500D0E126 /* ArticlesDownloader.swift in Sources */,
 				A00628941DDE466A0036B005 /* AppDelegate.swift in Sources */,
 				A05DF5761DE38CDB007ED236 /* DictionaryExt.swift in Sources */,

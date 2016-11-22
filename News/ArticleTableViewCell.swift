@@ -25,8 +25,17 @@ class ArticleTableViewCell: UITableViewCell {
         case readLater
         case discard
     }
+    struct ActionOptions {
+        let left: Action?
+        let right: Action?
+        
+        func contains(_ element: Action) -> Bool {
+            return left == element || right == element
+        }
+    }
     
     weak var delegate: ArticleTableViewCellDelegate?
+    var swipeOptions: ActionOptions!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,23 +58,38 @@ class ArticleTableViewCell: UITableViewCell {
     }
     
     @objc private func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
+        let translationThreshold: CGFloat = self.bounds.width * 5/9
+        let velocityThreshold: CGFloat = (self.bounds.width/2) / 0.1 // (distance / time == speed)
+        
         switch gestureRecognizer.state {
         case .began:
             self._original = self.contentView.center
         case .changed:
-            self.contentView.center.x = _original.x + gestureRecognizer.translation(in: self).x
+            let translation = gestureRecognizer.translation(in: self).x
+            
+            let provisionalAction: Action?
+            if let option = swipeOptions.left, translation < 0 {
+                provisionalAction = option
+            } else if let option = swipeOptions.right, translation > 0 {
+                provisionalAction = option
+            } else {
+                provisionalAction = nil
+            }
+            if let action = provisionalAction {
+                self.contentView.center.x = _original.x + translation
+            } else {
+                self.contentView.center.x = _original.x + translation/4
+//                style(for: nil, translation: translation)
+            }
         case .ended:
             let translation = gestureRecognizer.translation(in: self).x
             let velocity = gestureRecognizer.velocity(in: self).x
             
-            let translationThreshold: CGFloat = self.bounds.width * 5/9
-            let velocityThreshold: CGFloat = 2000
-            
             let action: Action?
-            if translation < -translationThreshold || velocity < -velocityThreshold {
-                action = .discard
-            } else if translation > translationThreshold || velocity > velocityThreshold {
-                action = .readLater
+            if let option = swipeOptions.left, translation < -translationThreshold || velocity < -velocityThreshold {
+                action = option
+            } else if let option = swipeOptions.right, translation > translationThreshold || velocity > velocityThreshold {
+                action = option
             } else {
                 action = nil
             }
@@ -75,18 +99,18 @@ class ArticleTableViewCell: UITableViewCell {
                 let triggeredByVelocity = abs(velocity) > velocityThreshold
                 if triggeredByVelocity {
                     var p = self.contentView.center
-                    p.x += velocity * 0.1 // (speed * time == distance)
+                    p.x += velocity * 2 * 0.1 // (speed * time == distance)
                     newCenter = p
                 } else {
                     switch action {
                     case .discard:
                         var p = self.contentView.center
-                        p.x -= self.bounds.width/2 // (0.1 == time)
+                        p.x -= self.bounds.width/2
                         newCenter = p
                         
                     case .readLater:
                         var p = self.contentView.center
-                        p.x += self.bounds.width/2 // (0.1 == time)
+                        p.x += self.bounds.width/2
                         newCenter = p
                     }
                 }
