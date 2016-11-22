@@ -95,6 +95,9 @@ class StateController {
         })
         
         operationQueue.addOperations(operations, waitUntilFinished: true)
+        
+        isDownloading = false
+        
         set(syncArticles.array, for: .latest)
         fire(.loaded(syncArticles.array), for: .latest)
     }
