@@ -102,6 +102,8 @@ class StateController {
         fire(.loaded(syncArticles.array), for: .latest)
     }
     
+    // MARK: - Interaction
+    
     func readLater(_ article: Article) {
         var articles = get(for: .latest)
         guard let index = articles.index(where: { $0.url == article.url }) else { return }
