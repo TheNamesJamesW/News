@@ -108,8 +108,8 @@ class StateController {
         articles.remove(at: index)
         set(articles, for: .latest)
         
-        let saved = get(for: .readLater)
-        set(saved + [article], for: .readLater)
+        let saved = [article] + get(for: .readLater)
+        set(saved, for: .readLater)
     }
     
     func discard(_ article: Article, for state: State) {
