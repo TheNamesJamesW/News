@@ -19,6 +19,7 @@
 		A00628B41DDE49C10036B005 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00628B31DDE49C10036B005 /* Article.swift */; };
 		A00628B61DDE49CA0036B005 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00628B51DDE49CA0036B005 /* Feed.swift */; };
 		A00628B81DDE55C60036B005 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00628B71DDE55C60036B005 /* Storage.swift */; };
+		A00CEEE11DE4CBCC000C9588 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00CEEE01DE4CBCC000C9588 /* UIColorExt.swift */; };
 		A05DF5761DE38CDB007ED236 /* DictionaryExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05DF5751DE38CDB007ED236 /* DictionaryExt.swift */; };
 		A08AF6BD1DE36F3800C0D757 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08AF6BB1DE36F3800C0D757 /* ArticleTableViewCell.swift */; };
 		A08AF6BE1DE36F3800C0D757 /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A08AF6BC1DE36F3800C0D757 /* ArticleTableViewCell.xib */; };
@@ -44,6 +45,7 @@
 		A00628B31DDE49C10036B005 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		A00628B51DDE49CA0036B005 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		A00628B71DDE55C60036B005 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		A00CEEE01DE4CBCC000C9588 /* UIColorExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		A05DF5751DE38CDB007ED236 /* DictionaryExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExt.swift; sourceTree = "<group>"; };
 		A08AF6BB1DE36F3800C0D757 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		A08AF6BC1DE36F3800C0D757 /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		A09EF8421DE23621009D8055 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				A00CEEE01DE4CBCC000C9588 /* UIColorExt.swift */,
 				A05DF5751DE38CDB007ED236 /* DictionaryExt.swift */,
 				A09EF8401DE23615009D8055 /* URLSessionExt.swift */,
 				A0F2C1701DE2528200D0E126 /* SynchronisedArray.swift */,
@@ -304,6 +307,7 @@
 				A00628981DDE466A0036B005 /* SecondViewController.swift in Sources */,
 				A001DFDB1DE47945002C4677 /* ArticlesTableViewController.swift in Sources */,
 				A0F2C16F1DE2403500D0E126 /* ArticlesDownloader.swift in Sources */,
+				A00CEEE11DE4CBCC000C9588 /* UIColorExt.swift in Sources */,
 				A00628941DDE466A0036B005 /* AppDelegate.swift in Sources */,
 				A05DF5761DE38CDB007ED236 /* DictionaryExt.swift in Sources */,
 				A09EF8411DE23615009D8055 /* URLSessionExt.swift in Sources */,

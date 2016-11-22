@@ -49,7 +49,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Feed-->
+        <!--Latest Feed Table View Controller-->
         <scene sceneID="uOd-hu-OFm">
             <objects>
                 <tableViewController id="VPR-1l-lBD" customClass="LatestFeedTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,18 +62,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t5q-Lr-f2u" id="YX6-im-yN5">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wgx-bR-9Gi">
-                                            <rect key="frame" x="15" y="15" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="15" y="14" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pdv-Yk-4iu">
-                                            <rect key="frame" x="15" y="35.5" width="33" height="14.5"/>
+                                            <rect key="frame" x="15" y="35" width="33" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -89,7 +89,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="Feed" image="first" id="WJI-QT-yDx"/>
+                    <tabBarItem key="tabBarItem" title="" image="latest" selectedImage="latest_selected" id="WJI-QT-yDx"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgx-EO-gfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,7 +135,7 @@
             </objects>
             <point key="canvasLocation" x="750" y="360"/>
         </scene>
-        <!--Read Later-->
+        <!--Read Later Table View Controller-->
         <scene sceneID="3Iq-sG-3u6">
             <objects>
                 <tableViewController id="fBs-RX-5Ai" customClass="ReadLaterTableViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
@@ -159,7 +159,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <tabBarItem key="tabBarItem" title="Read Later" image="second" id="31a-xs-74y"/>
+                    <tabBarItem key="tabBarItem" title="" image="read_later" selectedImage="read_later_selected" id="31a-xs-74y"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZ0-jc-MVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -188,6 +188,10 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="latest" width="33" height="10"/>
+        <image name="latest_selected" width="33" height="14"/>
+        <image name="read_later" width="59" height="11"/>
+        <image name="read_later_selected" width="59" height="15"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>
